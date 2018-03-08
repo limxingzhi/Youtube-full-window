@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Youtube Video Window viewer</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="./styles/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="./styles/custom.css" rel="stylesheet">
+
+  <!-- My styles -->
+  <link href="./styles/styles.css" rel="stylesheet">
+</head>
+
+<body class="text-center">
+  <form class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">Please paste the youtube video url.</h1>
+    <label for="url" class="sr-only">Password</label>
+    <input type="url" id="inputUrl" class="form-control" placeholder="Youtube Video URL" required>
+    <br />
+    <a id="open-video" class="btn btn-lg btn-primary btn-block">Open</a>
+    <a id="open-in-browser" target="_blank">
+      <p class="mt-5 mb-3 text-muted">Source</p>
+    </a>
+  </form>
+</body>
+
+<script>
+
+  const ipcRenderer = require('electron').ipcRenderer;
+
+  function displayErrorCallback(errorMessage) {
+    window.alert(errorMessage);
+  }
+
+  (function () {
+    // opens the github link in a OS browser
+    document.getElementById('open-in-browser').setAttribute("onclick", "require('electron').shell.openExternal('https://github.com/limxingzhi/Youtube-full-window')");
+
+    document.getElementById('open-video').addEventListener('click', (event) => ipcRenderer.send('create-video-window', document.getElementById('inputUrl').value));
+  })();
+
+  // Listen for errors from main
+  ipcRenderer.on('error', (event, errorMessage) => {
+    window.alert(errorMessage);
+  });
+
+</script>
+
+</html>

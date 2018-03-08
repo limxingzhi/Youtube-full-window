@@ -1,0 +1,17 @@
+{
+  "name": "youtube-full-window",
+  "version": "0.1.0",
+  "description": "This Electron app fills the entire youtube video in the window with the embeded url.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/limxingzhi/Youtube-full-window.git"
+  },
+  "homepage": "https://github.com/limxingzhi/Youtube-full-window#readme",
+  "devDependencies": {
+    "electron": "^1.8.3"
+  }
+}
